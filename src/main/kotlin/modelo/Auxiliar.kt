@@ -1,3 +1,8 @@
+package modelo
+
+import modelo.Funcionario
+//fully qualified name
+
 class Auxiliar(
     nome: String,
     cpf: String,

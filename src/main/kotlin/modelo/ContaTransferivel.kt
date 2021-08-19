@@ -1,3 +1,6 @@
+package modelo
+
+
 abstract class ContaTransferivel(
     titular: String,
     numero: Int
