@@ -1,5 +1,6 @@
-import br.com.alura.bytebank.modelo.*
+package br.com.alura.bytebank.teste
 
+import br.com.alura.bytebank.modelo.*
 
 fun testaFuncionarios() {
     val alex = Analista(
@@ -23,7 +24,7 @@ fun testaFuncionarios() {
     println("nome ${fran.nome}")
     println("cpf ${fran.cpf}")
     println("salario ${fran.salario}")
-    println("bonificaçao ${fran.bonificacao}")
+    println("bonificação ${fran.bonificacao}")
 
     if (fran.autentica(1234)) {
         println("autenticou com sucesso")
@@ -42,7 +43,7 @@ fun testaFuncionarios() {
     println("nome ${gui.nome}")
     println("cpf ${gui.cpf}")
     println("salario ${gui.salario}")
-    println("bonificaçao ${gui.bonificacao}")
+    println("bonificação ${gui.bonificacao}")
     println("plr ${gui.plr}")
 
     if (gui.autentica(4000)) {
@@ -58,10 +59,10 @@ fun testaFuncionarios() {
     )
 
     val calculadora = CalculadoraBonificacao()
-    calculadora.regista(alex)
-    calculadora.regista(fran)
-    calculadora.regista(gui)
-    calculadora.regista(maria)
+    calculadora.registra(alex)
+    calculadora.registra(fran)
+    calculadora.registra(gui)
+    calculadora.registra(maria)
 
     println("total de bonificação: ${calculadora.total}")
 }

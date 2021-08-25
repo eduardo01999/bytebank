@@ -1,6 +1,5 @@
 package br.com.alura.bytebank.modelo
 
-
 class Gerente(
     nome: String,
     cpf: String,
@@ -17,4 +16,5 @@ class Gerente(
         get() {
             return salario
         }
+
 }

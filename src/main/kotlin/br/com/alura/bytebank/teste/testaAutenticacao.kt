@@ -1,3 +1,5 @@
+package br.com.alura.bytebank.teste
+
 import br.com.alura.bytebank.modelo.Cliente
 import br.com.alura.bytebank.modelo.Diretor
 import br.com.alura.bytebank.modelo.Gerente
@@ -10,7 +12,7 @@ fun testaAutenticacao() {
         salario = 1000.0,
         senha = 1000
     )
-    val diretor = Diretor(
+    val diretora = Diretor(
         nome = "Fran",
         cpf = "222.222.222-22",
         salario = 2000.0,
@@ -25,7 +27,6 @@ fun testaAutenticacao() {
 
     val sistema = SistemaInterno()
     sistema.entra(gerente, 1000)
-    sistema.entra(diretor, 2000)
+    sistema.entra(diretora, 2000)
     sistema.entra(cliente, 1234)
-
 }

@@ -1,8 +1,10 @@
+package br.com.alura.bytebank.teste
+
 fun testaLacos() {
     var i = 0
     while (i < 5) {
-        val titular = "Eduardo $i"  //val imutavel; var mutavel
-        val numeroConta = 1000 + i
+        val titular: String = "Alex $i"
+        val numeroConta: Int = 1000 + i
         var saldo = i + 10.0
 
         println("titular $titular")
@@ -12,11 +14,9 @@ fun testaLacos() {
         i++
     }
 
-
-    for (i in 5 downTo 1) {    //ctrl + alt + l alinha o código (indenta)
-
-        val titular = "Eduardo $i"  //val imutavel; var mutavel
-        val numeroConta = 1000 + i
+    for (i in 5 downTo 1) {
+        val titular: String = "Alex $i"
+        val numeroConta: Int = 1000 + i
         var saldo = i + 10.0
 
         println("titular $titular")

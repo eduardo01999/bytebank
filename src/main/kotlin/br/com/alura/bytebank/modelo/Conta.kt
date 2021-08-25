@@ -1,12 +1,16 @@
 package br.com.alura.bytebank.modelo
 
+import br.com.alura.bytebank.exception.FalhaAutenticacaoException
+import br.com.alura.bytebank.exception.SaldoInsuficienteException
+import java.lang.NumberFormatException
+import java.lang.RuntimeException
 
 abstract class Conta(
     var titular: Cliente,
     val numero: Int
-) {
+) : Autenticavel {
     var saldo = 0.0
-        protected set   //só as classes filhas consegue alterar com protected
+        protected set
 
     companion object {
         var total = 0
@@ -18,12 +22,11 @@ abstract class Conta(
         total++
     }
 
-//    constructor(titular: String, numero: Int) {      //construtor secundário
-//        this.titular = titular
-//        this.numero = numero
-//    }
+    override fun autentica(senha: Int): Boolean {
+        return titular.autentica(senha)
+    }
 
-    fun deposita(valor: Double) {   // função dentro da classe é chamado de comportamentos
+    fun deposita(valor: Double) {
         if (valor > 0) {
             this.saldo += valor
         }
@@ -31,29 +34,25 @@ abstract class Conta(
 
     abstract fun saca(valor: Double)
 
-    open fun transfere(valor: Double, destino: Conta): Boolean {
-        if (saldo >= valor) {
-            saldo -= valor
-            destino.deposita(valor)
-            return true
+    fun transfere(valor: Double, destino: Conta, senha: Int) {
+        if (saldo < valor) {
+            throw SaldoInsuficienteException(
+                mensagem = "O saldo é insuficiente, saldo atual: $saldo, valor a ser subtraído $valor"
+            )
         }
-        return false
+        if (!autentica(senha)){
+            throw FalhaAutenticacaoException()
+        }
+//        throw NumberFormatException()
+        saldo -= valor
+        destino.deposita(valor)
     }
-
-//    fun getSaldo(): Double {
-//        return saldo
-//    }
-//
-//    fun setSaldo(valor: Double) {
-//        if (valor > 0) {
-//            saldo = valor
-//        }
 }
 
 class ContaCorrente(
     titular: Cliente,
     numero: Int
-) : ContaTransferivel(
+) : Conta(
     titular = titular,
     numero = numero
 ) {
@@ -66,20 +65,6 @@ class ContaCorrente(
 }
 
 class ContaPoupanca(
-    titular: Cliente,
-    numero: Int
-) : ContaTransferivel(
-    titular = titular,
-    numero = numero
-) {
-    override fun saca(valor: Double) {
-        if (this.saldo >= valor) {
-            this.saldo -= valor
-        }
-    }
-}
-
-class ContaSalario(
     titular: Cliente,
     numero: Int
 ) : Conta(

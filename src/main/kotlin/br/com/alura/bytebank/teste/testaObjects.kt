@@ -10,7 +10,6 @@ fun testaObjects() {
 
         override fun autentica(senha: Int) = this.senha == senha
     }
-
     val sistemaInterno = SistemaInterno()
     sistemaInterno.entra(fran, 1000)
     println("nome do cliente ${fran.nome}")

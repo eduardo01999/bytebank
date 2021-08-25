@@ -9,7 +9,8 @@ class Auxiliar(
     cpf = cpf,
     salario = salario
 ) {
-
     override val bonificacao: Double
-        get() = salario * 0.05
+        get() = salario * 0.05 //To change initializer of created properties use File | Settings | File Templates.
+
+
 }

@@ -1,3 +1,5 @@
+package br.com.alura.bytebank.teste
+
 import br.com.alura.bytebank.modelo.Cliente
 import br.com.alura.bytebank.modelo.ContaCorrente
 import br.com.alura.bytebank.modelo.ContaPoupanca
@@ -17,10 +19,14 @@ fun testaCopiasEReferencias() {
     var contaMaria = ContaPoupanca(Cliente(
         nome = "Maria",
         cpf = "",
-        senha = 2),
-        1003)
+        senha = 2
+    ), 1003)
     contaMaria.titular.nome = "Maria"
+    contaJoao.titular.nome = "João"
 
-    println("titular conta joão: ${contaJoao.titular}")
+    println("titular conta joao: ${contaJoao.titular}")
     println("titular conta maria: ${contaMaria.titular}")
+
+    println(contaJoao)
+    println(contaMaria)
 }
